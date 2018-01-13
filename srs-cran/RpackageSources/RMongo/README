@@ -1,0 +1,58 @@
+RMongo
+http://github.com/tc/RMongo
+----
+@tommychheng
+
+This is a R package which lets you query MongoDB databases.
+
+Feel free to report bugs/feature requests on github.
+
+Validate:
+cd ..
+R CMD check RMongo
+
+Build:
+R CMD build RMongo
+
+Install:
+R CMD install RMongo*.tar.gz
+
+Publish to CRAN:
+ftp ftp://CRAN.R-project.org/incoming/
+put RMongo*.tar.gz
+
+Email CRAN@R-project.org notifying a new release has been made.
+
+CHANGELOG
+---
+0.0.25
+Restored R 2.14 comp. Added replicaset support. thanks @benoitlouy
+
+0.0.24
+Recompiled to support >R 3. Updated mongo-java-driver to 2.11.2
+
+0.0.23
+Added aggregation framework support. thanks @jayjacobs
+
+0.0.22
+Fixed a bug in toCsvOutput which caused R data frames to be restricted to the fields of the first record found by a query. Thanks @tunnuz
+Added dbRemoveQuery, dbGetDistinct methods.  Thanks @liuq
+
+---
+# ---------------------------------------------------------------------------
+# Copyright 2010, Tommy Chheng.
+#
+# RMongo is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# RMongo is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with RMongo. If not, see <http://www.gnu.org/licenses/&gt;.
+#
+# ---------------------------------------------------------------------------

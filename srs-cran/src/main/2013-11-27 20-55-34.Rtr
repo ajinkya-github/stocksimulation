@@ -1,0 +1,163 @@
+﻿##------ Nov 27, 2013 8:55:34 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> #library(caret) 
+> 
+> tickerOHLC <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error: could not find function "getYahooData"
+> #print(aapl)
+> 
+> #######################################################################
+> 
+> tickerDailySignal <- getPeriodReturnSignals(tickerOHLC,"daily",2)
+[1] 0.02
+[1] " calculating daily return signals "
+Error in getPeriodReturnSignals(tickerOHLC, "daily", 2) : 
+  could not find function "dailyReturn"
+> smaMultiSmaSignal <- getMultiSmaSignals(tickerOHLC)
+Error in getMultiSmaSignals(tickerOHLC) : could not find function "SMA"
+> smaSignal <- getSmaSignals(tickerOHLC,20)
+Error in getSmaSignals(tickerOHLC, 20) : could not find function "SMA"
+> bbandSignal <- getBolingerBandsSignals(tickerOHLC)
+Error in getBolingerBandsSignals(tickerOHLC) : 
+  could not find function "BBands"
+> rsiSignal <- getRsiSignals(tickerOHLC)
+Error in getRsiSignals(tickerOHLC) : could not find function "RSI"
+> 
+> tickerTestData <- cbind(smaMultiSmaSignal,tickerDailySignal,smaSignal,bbandSignal,rsiSignal)
+> 
+> row.has.na <- apply(tickerTestData, 1, function(x){any(is.na(x))})
+> sum(row.has.na)
+[1] 99
+> tickerTestData <- tickerTestData[!row.has.na,]
+> print("removing rows containing NA from test data")
+[1] "removing rows containing NA from test data"
+> 
+> tickerTestData$ticker.multisma.signals <- droplevels(tickerTestData$ticker.multisma.signals)
+> tickerTestData$ticker.return.signals <- droplevels(tickerTestData$ticker.return.signals)
+> tickerTestData$ticker.sma.signals <- droplevels(tickerTestData$ticker.sma.signals)
+> tickerTestData$ticker.bbands.signals <- droplevels(tickerTestData$ticker.bbands.signals)
+> tickerTestData$ticker.rsi.signals <- droplevels(tickerTestData$ticker.rsi.signals)
+> 
+> i<-nrow(tickerTestData)
+> print(i)
+[1] 3114
+> ticker.prediction <- predict(ticker.rfmodel, tickerTestData)
+Error in UseMethod("predict") : 
+  no applicable method for 'predict' applied to an object of class "c('randomForest.formula', 'randomForest')"
+> 
+> #confusionmatrix <- confusionMatrix(ticker.prediction, tickerTestData$daily.returns)
+> 
+> csvData <- data.frame(tickerTestData$daily.returns, ticker.prediction,tickerTestData$ticker.return.signals,
++ 		tickerTestData$Open,tickerTestData$High,tickerTestData$Low,tickerTestData$Close, 
++ 		tickerTestData$Volume,tickerTestData$Close.SMA.20,tickerTestData$Close.SMA.50,
++ 		tickerTestData$dn,tickerTestData$up,tickerTestData$mavg,tickerTestData$pctB,tickerTestData$mfi)
+Error in data.frame(tickerTestData$daily.returns, ticker.prediction, tickerTestData$ticker.return.signals,  : 
+  arguments imply differing number of rows: 3114, 946, 0
+> 
+> print("renaming column names")
+[1] "renaming column names"
+> 
+> rename(csvData, c("tickerTestData$daily.returns"="Returns %", "ticker.prediction"="Predicted Returns %","tickerTestData.ticker.return.signals"="Recommendation Signals",
++ 				"tickerTestData.Open"="Open", "tickerTestData.High"="High","tickerTestData.Low"="Low","tickerTestData.Close"="Close", 
++ 				"tickerTestData.Volume"="Volume","tickerTestData.Close.SMA.20"="20 DAY SMA","tickerTestData.Close.SMA.50"="50 DAY SMA",
++ 				"tickerTestData.dn"="LOWEN BBAND ","tickerTestData.up"="HIGHER BBAND","tickerTestData.mavg"="MAVG","tickerTestData.pctB"="BBAND PCTB","tickerTestData.mfi"="MONEY FLOW INDEX"))
+Error: could not find function "rename"
+> 
+> fileExtension<- "csv"
+> csvFileName <- paste(tickerSymbol,fileExtension,sep=".")
+Error in paste(tickerSymbol, fileExtension, sep = ".") : 
+  object 'tickerSymbol' not found
+> writeToCsv(csvData,csvFileName)
+Error: could not find function "writeToCsv"
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+randomForest 4.6-7
+Type rfNews() to see new features/changes/bug fixes.
+> library(quantmod)
+Loading required package: Defaults
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object is masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+Loading required package: TTR
+Version 0.4-0 included new data defaults. See ?getSymbols.
+> library(TTR)
+> library(tseries)
+
+    'tseries' version: 0.10-32
+
+    'tseries' is a package for time series analysis and computational
+    finance.
+
+    See 'library(help="tseries")' for details.
+
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> now1 <- Sys.time()
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 757
+Warning message:
+'memory.limit()' is Windows-specific 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelPrices.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"

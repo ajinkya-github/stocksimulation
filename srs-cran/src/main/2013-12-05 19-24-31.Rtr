@@ -1,0 +1,3876 @@
+﻿##------ Dec 5, 2013 7:24:31 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> listOfCompanies <- c("AAPL","MSFT","INTC","JPM","WFC","BAC","C","XOM","VLO","CVX")
+> 
+> for(i in 1:nrow(listOfCompanies))
++ {
++ 	symbol <- listOfCompanies[i]
++ 	#tickerOHLC <- getYahooData(tickerSymbol, trainStartDate, trainEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)	
++ }
+Error in 1:nrow(listOfCompanies) : argument of length 0
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> listOfCompanies <- c("AAPL","MSFT","INTC","JPM","WFC","BAC","C","XOM","VLO","CVX")
+> 
+> for(i in 1:nrow(listOfCompanies))
++ {
++ 	symbol <- listOfCompanies[i]
++ 	#tickerOHLC <- getYahooData(tickerSymbol, trainStartDate, trainEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)	
++ }
+Error in 1:nrow(listOfCompanies) : argument of length 0
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> listOfCompanies <- c("AAPL","MSFT","INTC","JPM","WFC","BAC","C","XOM","VLO","CVX")
+> 
+> for(i in 1:10)
++ {
++ 	symbol <- listOfCompanies[i]
++ 	#tickerOHLC <- getYahooData(tickerSymbol, trainStartDate, trainEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)	
++ }
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+randomForest 4.6-7
+Type rfNews() to see new features/changes/bug fixes.
+> library(TTR)
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object is masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> library(forecast)
+This is forecast 4.8 
+
+> library(quantmod)
+Loading required package: Defaults
+Version 0.4-0 included new data defaults. See ?getSymbols.
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> tickerSymbol <- "IBM"
+> 
+> arimaTickerData <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error in as.Date(as.character(start), "%Y%m%d") : 
+  object 'predictStartDate' not found
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(arimaTickerData,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+Error in inherits(x, "xts") : object 'arimaTickerData' not found
+> x <- as.ts(ret$daily.returns)
+Error in as.ts(ret$daily.returns) : object 'ret' not found
+> fit <- auto.arima(x)
+Error in is.constant(x) : object 'x' not found
+> f1 <- forecast(fit,h=1)
+Error in forecast(fit, h = 1) : object 'fit' not found
+> plot(f1)
+Error in plot(f1) : object 'f1' not found
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in cbind(pred, ret) : object 'ret' not found
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> tickerSymbol <- "IBM"
+> predictStartDate <- 20110101
+> predictEndDate <- 20130808
+> 
+> arimaTickerData <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(arimaTickerData,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 654
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f1 <- forecast(fit,h=1)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 653, 654
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> tickerSymbol <- "IBM"
+> predictStartDate <- 20110101
+> predictEndDate <- 20130808
+> 
+> arimaTickerData <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(arimaTickerData,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 654
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f1 <- forecast(fit,h=10)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 653, 654
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> tickerSymbol <- "IBM"
+> predictStartDate <- 20130101
+> predictEndDate <- 20130808
+> 
+> arimaTickerData <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(arimaTickerData,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 152
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f1 <- forecast(fit,h=10)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 151, 152
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> tickerSymbol <- "IBM"
+> predictStartDate <- 20130101
+> predictEndDate <- 20130808
+> 
+> arimaTickerData <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(arimaTickerData,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 152
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 151, 152
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") : cannot open: HTTP status was '0 (null)'
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+Error in inherits(x, "xts") : object 'd' not found
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 151, 152
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 0:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in lm.fit(x, y, offset = offset, singular.ok = singular.ok, ...) : 
+  0 (non-NA) cases
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") : cannot open: HTTP status was '0 (null)'
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> roundedRet1 <- round(ret1)
+Error in Math.data.frame(list(`f$lower.80%` = c(-2.59392311376608, -2.59392311376608,  : 
+  non-numeric variable in data frame: ticker.return.signalsticker.return.factors
+> 
+> for(i in 1:nrow(roundedRet1))
++ {
++ 	
++ }
+Error in nrow(roundedRet1) : object 'roundedRet1' not found
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1 <- c(round(ret1[,i]))
++ }
+Error in ret1[, i] : incorrect number of dimensions
+> 
+> for(i in 1:nrow(roundedRet1))
++ {
++ 	
++ }
+Error in nrow(roundedRet1) : object 'roundedRet1' not found
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> for(i in 1:nrow(roundedRet1))
++ {
++ 	
++ }
+Error in nrow(roundedRet1) : object 'roundedRet1' not found
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> 
+> predicted.price <- nrow(ret1)
+> 
+> # arima and random forest integration
+> for(i in 1:nrow(ret1))
++ {
++ 	if(ret1[i,6] == "buy")
++ 	{
++ 		#predicted.price[i] <- ret1$f$upper.80% +
++ 	}
++ 	if(ret1[i,6] == "hold")
++ 	{
++ 		
++ 	}
++ 	if(ret1[i,6] == "sell")
++ 	{
++ 		
++ 	}
++ 	
++ }
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> 
+> predicted.price <- nrow(ret1)
+> 
+> # arima and random forest integration
+> for(i in 1:nrow(ret1))
++ {
++ 	if(ret1[i,6] == "buy")
++ 	{
++ 		predicted.price[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(ret1[i,6] == "hold")
++ 	{
++ 		predicted.price[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(ret1[i,6] == "sell")
++ 	{
++ 		predicted.price[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> 
+> predicted.price <- nrow(ret1)
+> 
+> # arima and random forest integration
+> for(i in 1:nrow(ret1))
++ {
++ 	if(ret1[i,6] == "buy")
++ 	{
++ 		predicted.price[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(ret1[i,6] == "hold")
++ 	{
++ 		predicted.price[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(ret1[i,6] == "sell")
++ 	{
++ 		predicted.price[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
+> 
+> round(predicted.price)
+  [1]  0 -4  0  0  0  0 -1  4  0 -1 -1 -1 -1  3 -1  0  0  0  0  0  0  0 -2  0  0
+ [26]  0  0  0  0  0  0  0  2  0  0  0  2  0  0  0  0  0  0  0  0  0  0  0  0  0
+ [51]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  2  0  0  0
+ [76]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  2
+[101]  0 -1  0  0 -1 -2  0 -2  0 -1  0  0  0  0  0  0  0  0  0  0  0 -2  0  0  0
+[126]  0  0  0  0 -2  0  0  0  0  0  0  2  0  0  0  0 -1  0  0  0  0  0  0  0  0
+[151] -1 -1 -1 -1 -1  0  0  0  0 -1 -1 -1 -1 -2 -2 -4 -2 -6 -2 -6 -1  5 -1  5 -2
+[176] -2 -6 -2 -6  6  6 -1 -1 -1  6 -2 -6 -2 -6 -7 -2 -6 -6 -6 -2 -2  6 -2 -6  6
+[201] -2 -2 -6 -6 -2 -6 -6  6 -2  6  6 -1 -1 -6 -6 -1 -6 -1 -6  6 -6 -6  5 -5 -5
+[226]  5  5 -1 -1 -1 -4  4 -1 -4  4  5 -5 -1 -5 -1 -1  5 -1 -1 -1 -1 -1 -1  0 -1
+[251]  5 -1  5  0  5  0  0 -5 -1 -1 -6 -1 -1 -5  5 -1 -1 -1 -1  4 -1 -1 -1  4 -1
+[276] -1  4  0 -4 -1 -1 -1 -4  0 -4 -1 -5 -1 -1  4  5 -4 -2  0
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> 
+> predicted.price <- nrow(ret1)
+> 
+> # arima and random forest integration
+> for(i in 1:nrow(ret1))
++ {
++ 	if(ret1[i,6] == "buy")
++ 	{
++ 		predicted.price[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(ret1[i,6] == "hold")
++ 	{
++ 		predicted.price[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(ret1[i,6] == "sell")
++ 	{
++ 		predicted.price[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
+> 
+> predicted.price <- round(predicted.price)
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+
+    'tseries' version: 0.10-32
+
+    'tseries' is a package for time series analysis and computational
+    finance.
+
+    See 'library(help="tseries")' for details.
+
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> now1 <- Sys.time()
+> 
+> 
+> listOfCompanies <- c("AAPL","MSFT","INTC","JPM","WFC","BAC","C","XOM","VLO","CVX","JNJ","PFE","AIQ")
+> 
+> for(i in 1:10)
++ {
++ 	
++ tickerSymbol <- listOfCompanies[i]
++ 
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
++ 
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
++ 
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
++ 
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelPrices.R")
++ source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
++ 
++ now2 <- Sys.time()
++ 
++ print(difftime(now2,now1,unit="sec"))
++ 
++ }
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 1511
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.factors ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 72.12%
+Confusion matrix:
+   -9 -8 -7 -6 -5 -4 -3 -2 -1   0  1  2  3  4 5 6 7 8 9 10 class.error
+-9  0  0  0  1  0  1  0  0  0   0  0  0  0  0 0 0 0 0 0  0   1.0000000
+-8  0  0  0  0  0  1  1  0  0   0  0  0  0  0 0 0 0 0 0  0   1.0000000
+-7  0  0  0  1  0  3  3  0  0   0  0  0  0  0 0 0 0 0 0  0   1.0000000
+-6  0  0  0  0  0  6  7  0  0   0  0  0  0  0 0 0 0 0 0  0   1.0000000
+-5  0  0  0  0  0  4 15  0  0   0  0  0  0  0 0 0 0 0 0  0   1.0000000
+-4  0  1  3  2  2 11 26  0  0   0  0  0  0  0 0 0 0 0 0  0   0.7555556
+-3  0  1  1  1  4 14 43  0  0   1  0  0  0  0 0 0 0 0 0  0   0.3384615
+-2  0  0  0  0  0  0  0 16 32  39 33 15  0  0 0 0 0 0 0  0   0.8814815
+-1  0  0  0  0  0  0  0 19 43  84 55 23  0  0 0 0 0 0 0  0   0.8080357
+0   0  0  0  0  0  0  0 21 50 125 73 31  0  0 0 0 0 0 0  0   0.5833333
+1   0  0  0  0  0  0  0 15 49  88 54 33  0  0 0 0 0 0 0  0   0.7740586
+2   0  0  0  0  0  0  0 10 32  46 57 10  0  0 0 0 0 0 0  0   0.9354839
+3   0  0  0  0  0  0  1  0  0   0  0  0 73 14 5 2 0 0 0  0   0.2315789
+4   0  0  0  0  0  0  0  0  0   0  1  0 37 16 0 2 0 0 0  0   0.7142857
+5   0  0  0  0  0  0  0  0  0   0  0  0  8  7 1 2 0 0 0  0   0.9444444
+6   0  0  0  0  0  0  0  0  0   0  0  0 10  8 1 0 0 0 0  0   1.0000000
+7   0  0  0  0  0  0  0  0  0   0  0  0  3  2 0 0 0 0 0  0   1.0000000
+8   0  0  0  0  0  0  0  0  0   0  0  0  2  1 0 1 0 0 0  0   1.0000000
+9   0  0  0  0  0  0  0  0  0   0  0  0  1  1 0 0 0 0 0  0   1.0000000
+10  0  0  0  0  0  0  0  0  0   0  0  0  0  1 0 0 0 0 0  0   1.0000000
+                           -9    -8     -7    -6     -5     -4     -3     -2
+ticker.multisma.signals  0.00  0.00   0.00 -2.71   1.97   4.15  -2.51   2.58
+Close.SMA.20            -1.90 -1.41  -5.19  6.15  -8.46   0.26  20.47  -8.78
+Close.SMA.50             0.00 -1.73  -4.11  6.97  -2.33   4.73  21.00 -16.49
+ticker.return.signals    7.02  0.00  18.22 53.14  66.84 158.35 225.35 118.66
+daily.returns            1.67 -1.00  -6.05  3.96  10.17   4.35  -8.95 -12.42
+Open                    -2.99 -1.73  -5.86  1.21  -3.38   2.63  18.97  -7.37
+Close                   -3.14 -1.00  -7.06  5.25  -6.10   0.29  19.63  -9.28
+High                    -2.79 -1.73  -4.10  4.31  -4.50   0.29  16.60  -5.10
+Low                     -4.48 -1.41  -5.49  1.24   0.70  -2.92  21.79  -6.10
+Volume                  -1.30 -2.45   9.93  7.05  -6.41  -3.74   5.86 -11.48
+ticker.sma.signals       0.00  0.00   0.00 -3.93   1.38  -5.50  -6.83 -10.13
+tdi                     -5.68  0.00 -10.00 12.41 -14.55 -18.08   6.19  -5.67
+di                      -3.40 -1.73 -10.28  8.99 -10.74 -11.28   5.72  -1.17
+ticker.bbands.signals    0.00  0.00   0.00  1.39  -2.80   3.15   3.01  -1.38
+dn                      -3.66 -2.24  -4.71  1.94  -5.80   2.30  10.75  -6.72
+mavg                    -1.96 -1.41  -4.82  4.47  -7.82   1.57  21.13  -9.09
+up                      -2.83 -1.41  -4.95  4.96  -2.94  -0.57  32.39 -12.30
+pctB                     3.55 -1.00 -14.87  9.62  -5.03  16.12  12.87  -9.38
+mfi                      4.71 -1.00 -12.09  5.05  -5.48   4.91   9.22 -13.93
+Close.EMA.14             6.01 -3.32  -6.01 -5.13  -5.41   2.29  22.24 -12.63
+ticker.rsi.signals       3.74  0.00   2.61  3.98  -0.37   4.86  13.80  -2.99
+                            -1      0      1      2      3      4     5      6
+ticker.multisma.signals  -0.23   0.25   0.56  -4.90   6.09  -0.50 -3.62   1.39
+Close.SMA.20              8.92  36.41  -5.06 -10.19  24.93  -3.41 -2.25  -4.34
+Close.SMA.50             -0.63  41.90   1.45  -8.82  26.55  -0.24 -3.84  -9.63
+ticker.return.signals   184.15 228.32 192.84 126.58 301.37 177.76 55.51  52.62
+daily.returns            -5.93  10.67   7.68 -10.17   0.80  -1.73 -5.46  -5.94
+Open                      1.73  36.36   5.66 -10.85  24.60  -3.13 -6.56  -8.02
+Close                     3.55  43.36  -4.18 -11.19  25.16  -5.52 -6.69  -8.53
+High                      0.11  36.98   0.07 -13.59  22.50  -1.04 -2.41  -8.77
+Low                       2.74  39.89  -0.45  -9.24  23.38  -3.03 -5.46  -7.23
+Volume                   19.43  26.28  -4.15 -19.38  -2.31  -5.78 -3.22  -3.55
+ticker.sma.signals       -4.40  -2.73   1.42  -0.77  -2.78  -4.43  1.39  -2.94
+tdi                      -7.24  23.97  -3.02 -17.33   1.80   6.80  4.29 -14.17
+di                        1.35  34.65  -1.87 -15.53  10.63  -9.51 -7.95   1.26
+ticker.bbands.signals     3.73 -11.14   5.26   6.92   6.08  -4.25  1.41   1.39
+dn                        5.29  31.54  -1.93  -5.33  25.15  -3.84 -9.78  -7.70
+mavg                      8.18  35.54  -5.91 -10.30  24.55  -4.75 -3.41  -3.04
+up                        9.77  37.76  -6.34 -14.48  24.90  -4.43  2.49  -3.78
+pctB                     -9.62  61.08  -2.30 -27.08  17.30 -19.46 -3.12 -13.76
+mfi                       7.03  31.06 -21.18  -0.91  29.21  15.31  5.97 -11.38
+Close.EMA.14             -0.44  45.02   3.29 -29.71  27.52 -13.13 -0.13  -7.90
+ticker.rsi.signals        4.23  -9.16   7.59  -7.72  -1.34   3.35  7.68  -6.51
+                             7     8     9 10 MeanDecreaseAccuracy
+ticker.multisma.signals   0.00 -1.00  0.00  0                -0.04
+Close.SMA.20             -3.50 -6.05 -3.00  0                31.97
+Close.SMA.50              1.76 -5.36 -2.24  0                33.73
+ticker.return.signals    13.05  5.99  2.00  0               400.21
+daily.returns            -5.81  3.66 -1.00  0                -0.80
+Open                     -3.16 -2.76 -1.63  0                33.69
+Close                    -0.52 -2.42  0.00  0                33.94
+High                     -0.15 -3.28 -2.65  0                29.26
+Low                      -1.54 -3.11  0.58  0                34.91
+Volume                  -11.71 -1.92  1.73  0                 9.85
+ticker.sma.signals        0.00  1.00  0.00  0               -10.01
+tdi                      -2.13 -0.16  0.82  0                 0.33
+di                       -9.80 -0.67 -2.65  0                13.76
+ticker.bbands.signals     0.00  0.00  0.00  0                -0.91
+dn                       -4.75 -0.60 -1.41  0                27.69
+mavg                     -2.74 -5.68 -1.73  0                30.47
+up                       -1.36 -5.24 -3.00  0                33.33
+pctB                      3.90 -0.89  1.41  0                26.32
+mfi                       7.72 -4.42  1.00  0                22.03
+Close.EMA.14              3.15 -3.46  0.58  0                27.36
+ticker.rsi.signals       -1.00 -1.27 -1.00  0                 1.39
+                        MeanDecreaseGini
+ticker.multisma.signals             2.83
+Close.SMA.20                       54.96
+Close.SMA.50                       58.99
+ticker.return.signals             135.26
+daily.returns                      54.73
+Open                               59.36
+Close                              57.94
+High                               56.92
+Low                                57.90
+Volume                             89.97
+ticker.sma.signals                  3.17
+tdi                                79.21
+di                                 76.86
+ticker.bbands.signals               2.38
+dn                                 61.83
+mavg                               55.01
+up                                 60.38
+pctB                               82.24
+mfi                                85.00
+Close.EMA.14                       80.72
+ticker.rsi.signals                  4.39
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 1511
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.factors ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 68.02%
+Confusion matrix:
+   -9 -8 -7 -6 -5 -4 -3 -2 -1   0  1  2  3  4 5 6 7 9 10 class.error
+-9  0  0  0  0  0  0  1  0  0   0  0  0  0  0 0 0 0 0  0   1.0000000
+-8  0  0  0  1  0  0  2  0  0   0  0  0  0  0 0 0 0 0  0   1.0000000
+-7  0  0  0  0  1  1  1  0  0   0  0  0  0  0 0 0 0 0  0   1.0000000
+-6  0  2  0  0  1  2  4  0  0   0  0  0  0  0 0 0 0 0  0   1.0000000
+-5  0  0  0  2  0  0  4  0  0   0  0  0  0  0 0 0 0 0  0   1.0000000
+-4  0  0  1  2  0  4 10  0  0   0  0  0  0  0 1 0 0 0  0   0.7777778
+-3  0  0  0  2  0  6 32  0  0   0  0  0  0  2 0 0 0 0  0   0.2380952
+-2  0  0  0  0  0  0  0  9 23  53 13  3  0  0 0 0 0 0  0   0.9108911
+-1  0  0  0  0  0  0  0 10 34 166 53 12  0  0 0 0 0 0  0   0.8763636
+0   0  0  0  0  0  0  0 16 80 284 69 29  0  0 0 0 0 0  0   0.4058577
+1   0  0  0  0  0  0  0  5 40 162 55 12  0  0 0 0 0 0  0   0.7992701
+2   0  0  0  0  0  0  0  2 17  67 22  3  0  0 0 0 0 0  0   0.9729730
+3   0  0  0  1  0  0  1  0  0   0  0  0 21 15 1 0 0 1  0   0.4750000
+4   0  0  0  0  0  0  3  0  0   0  0  0 17  5 0 1 1 0  0   0.8148148
+5   0  0  0  0  0  0  0  0  0   0  0  0  7  1 3 0 0 0  0   0.7272727
+6   0  0  0  0  0  0  0  0  0   0  0  0  0  2 0 0 0 0  0   1.0000000
+7   0  0  0  0  0  0  0  0  0   0  0  0  2  0 1 0 0 0  0   1.0000000
+9   0  0  0  0  0  0  0  0  0   0  0  0  1  1 0 0 0 0  0   1.0000000
+10  0  0  0  0  0  0  0  0  0   0  0  0  1  0 0 0 0 0  0   1.0000000
+                        -9    -8    -7    -6    -5    -4     -3     -2     -1
+ticker.multisma.signals  0  0.00  0.00  1.70  1.00 -4.35   6.72  -9.15  -8.78
+Close.SMA.20             0 -2.89 -3.41  0.08 -4.21 -0.97  23.38   4.01 -14.53
+Close.SMA.50             0 -1.59 -3.34 -2.14  1.39  1.71  23.08  10.77 -27.48
+ticker.return.signals    0  6.64  5.09 44.56 20.44 91.55 187.10  61.54 132.64
+daily.returns            0 -0.80 -2.07 -1.97 -7.05 -4.13  -9.13   9.75 -15.70
+Open                     0 -4.84 -4.63 -9.00 -3.41  9.78  18.95   3.36 -18.54
+Close                    0 -5.26 -4.13 -6.50 -4.21  7.69  20.44  -3.73 -19.59
+High                     0 -5.80 -4.75 -7.00 -7.32  4.28  22.17   3.22 -10.30
+Low                      0 -5.13 -3.60 -3.27 -7.51 12.50  22.62   0.88 -16.65
+Volume                   0 -4.07  2.04  1.10  8.71  5.07 -10.92   6.10 -13.84
+ticker.sma.signals       0  0.00  0.00 -2.16 -1.71  4.66   7.06  -2.56  -2.62
+tdi                      0 -3.06 -2.38 -8.47 -6.59  5.21  -7.39  -8.27 -19.28
+di                       0 -3.67  2.90  4.63 -8.04 28.72  -0.46  12.29 -20.84
+ticker.bbands.signals    0  0.00  0.00  0.00  0.00  0.00   2.21  -5.37   6.45
+dn                       0 -0.48 -4.04 10.64 -5.44 -0.53  28.50  -1.51 -18.66
+mavg                     0 -0.80 -3.96  2.86 -5.28 -1.80  22.73   5.86 -14.50
+up                       0 -2.15 -2.86 -2.71 -2.81  2.00  19.33   7.41 -14.40
+pctB                     0 -3.12  1.80 -4.45 -3.15 14.57   3.59 -20.40 -12.63
+mfi                      0 -2.07 -2.68  4.38 -6.30  5.24  -3.28  -5.84  -8.29
+Close.EMA.14             0 -2.31  2.07 -0.82 -1.16 20.79   3.42 -11.03 -19.52
+ticker.rsi.signals       0 -1.41  1.00 -0.45  1.41 -0.97  -0.62   0.10  -1.76
+                             0      1      2      3      4      5     6     7
+ticker.multisma.signals  17.69  20.70   6.47  -3.31   3.96   0.00  0.00  0.00
+Close.SMA.20             65.55  -8.86 -14.23   4.87   1.85  11.03  5.70 -1.60
+Close.SMA.50             72.29  -0.24 -12.13  10.28  12.10  17.25  4.91  2.46
+ticker.return.signals   214.24 139.20  59.64 177.61 130.17  63.37 12.87 12.43
+daily.returns            29.59   1.39 -14.59  -8.76 -10.74 -12.74 -6.18  9.94
+Open                     63.17 -10.78 -16.14  11.62   7.12  17.42  5.85 -6.88
+Close                    70.57 -17.04 -12.49   4.89   5.48  19.13 -0.82 -1.17
+High                     60.64 -12.37 -17.20   9.91  10.66  21.75  0.22 -7.49
+Low                      68.00  -8.81 -14.62   4.37   8.00  17.50  4.53 -1.78
+Volume                   14.37  -1.48  -9.30  16.14  -7.44 -12.09 -8.72  7.06
+ticker.sma.signals       -2.26   6.96   0.88   1.11   1.51   3.20  1.41 -2.14
+tdi                      38.79  -9.81  -7.68   0.47  -5.08  -6.44 -5.04 -2.83
+di                       58.69 -15.08 -14.78 -10.95  -0.70 -10.54  5.48  1.19
+ticker.bbands.signals    -5.35  -1.68   0.53   1.41   0.00   0.00  0.00  0.00
+dn                       59.88   1.03 -21.24   4.73   6.65  11.33  4.59 -2.15
+mavg                     63.90  -8.56 -16.97   4.61   0.61  11.36  3.94 -1.08
+up                       71.38  -6.64 -15.35   9.87   0.60  13.44  2.95 -0.16
+pctB                     66.82  -8.37 -18.14  -5.09   3.39   0.94 -4.45  5.54
+mfi                      54.66  -4.07 -15.41 -10.51  11.22   3.74 -0.28 -6.42
+Close.EMA.14             79.46 -17.30 -15.47  -4.75  12.76   0.64 -1.07  4.25
+ticker.rsi.signals        7.26  -9.71  -7.16   3.38   4.67   1.60  1.00  0.00
+                            9 10 MeanDecreaseAccuracy MeanDecreaseGini
+ticker.multisma.signals  0.00  0                14.55             2.83
+Close.SMA.20            -6.02  0                51.72            57.47
+Close.SMA.50            -3.88  0                59.86            65.04
+ticker.return.signals    2.24  0               287.16            74.18
+daily.returns           -1.41  0                 7.95            42.43
+Open                    -5.02  0                48.54            61.07
+Close                   -1.63  0                49.58            58.45
+High                    -4.25  0                50.17            59.86
+Low                     -2.83  0                54.32            60.61
+Volume                  -1.00  0                 2.85            79.44
+ticker.sma.signals       0.00  0                 0.99             4.48
+tdi                     -2.00  0                 9.46            67.36
+di                       1.00  0                29.17            71.92
+ticker.bbands.signals    0.00  0                -1.60             1.63
+dn                      -2.00  0                47.80            65.72
+mavg                    -5.31  0                50.10            57.55
+up                      -5.31  0                59.00            66.23
+pctB                     2.45  0                39.87            71.68
+mfi                      0.00  0                33.11            74.16
+Close.EMA.14             2.24  0                49.36            71.94
+ticker.rsi.signals       0.00  0                -0.03             2.70
+Error in predict.randomForest(ticker.rfmodel, tickerTestData) : 
+  Type of predictors in new data do not match that of the training data.
+In addition: Warning messages:
+1: 'memory.limit()' is Windows-specific 
+2: 'memory.limit()' is Windows-specific 
+3: 'memory.limit()' is Windows-specific 
+4: 'memory.limit()' is Windows-specific 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+Error in paste("http://ichart.finance.yahoo.com/table.csv?s=", symbol,  : 
+  object 'tickerSymbol' not found
+In addition: Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset "+ trainStartDate + "to" + trainEndDate)
+Error in "Training Random Forest Model from training dataset " + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+Loading required package: XML
+Error in cbind(smaMultiSmaSignal, tickerDailySignal, smaSignal, bbandSignal,  : 
+  object 'smaMultiSmaSignal' not found
+In addition: Warning message:
+package 'pmml' was built under R version 3.0.2 
+> 
+> print("Training Arima Model from Training dataset"+ trainStartDate + "to" + trainEndDate)
+Error in "Training Arima Model from Training dataset" + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in "Predicting the Stocks for Test Period " + predictStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+Error in paste("http://ichart.finance.yahoo.com/table.csv?s=", symbol,  : 
+  object 'tickerSymbol' not found
+> 
+> print("Completed prediction for Stock "+ tickerSymbol +" for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in print("Completed prediction for Stock " + tickerSymbol + " for Test Period " +  : 
+  object 'tickerSymbol' not found
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 0.024122 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 1511
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  object 'ticker.return.factors' not found
+In addition: Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset "+ trainStartDate + "to" + trainEndDate)
+Error in "Training Random Forest Model from training dataset " + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+Error in cbind(smaMultiSmaSignal, tickerDailySignal, smaSignal, bbandSignal,  : 
+  object 'smaMultiSmaSignal' not found
+> 
+> print("Training Arima Model from Training dataset"+ trainStartDate + "to" + trainEndDate)
+Error in "Training Arima Model from Training dataset" + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in "Predicting the Stocks for Test Period " + predictStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  object 'ticker.return.factors' not found
+> 
+> print("Completed prediction for Stock "+ tickerSymbol +" for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in "Completed prediction for Stock " + tickerSymbol : 
+  non-numeric argument to binary operator
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 0.7742109 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 1511
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset "+ trainStartDate + "to" + trainEndDate)
+Error in "Training Random Forest Model from training dataset " + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 14.16%
+Confusion matrix:
+     buy hold sell class.error
+buy    3   83    6   0.9673913
+hold  11 1203   12   0.0187602
+sell   3   85    6   0.9361702
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  13.45  21.30  -2.35                23.14
+Close.SMA.20            -38.41  95.00 -43.68                93.52
+Close.SMA.50            -30.94  92.81 -48.34                91.44
+daily.returns            -0.26  63.99 -42.45                52.85
+Open                    -33.38  93.26 -44.26                91.88
+Close                   -28.76  91.63 -43.45                90.26
+High                    -35.78  90.81 -38.39                89.40
+Low                     -35.86  91.34 -44.95                89.71
+Volume                   32.02  61.16  -9.77                64.27
+ticker.sma.signals       -4.95   5.99  -4.23                 3.83
+tdi                     -13.85  72.84 -19.74                64.75
+di                      -11.75 118.19  41.91               121.10
+ticker.bbands.signals    11.61  -6.08   1.41                -1.56
+dn                      -27.91 100.42 -56.86                99.09
+mavg                    -39.20  95.70 -43.23                94.08
+up                      -41.74  89.59 -39.97                87.68
+pctB                    -18.56 103.18 -29.47               100.56
+mfi                     -19.40 112.45 -26.78               108.74
+Close.EMA.14            -15.11 102.61 -25.47               100.52
+ticker.rsi.signals       -5.14  21.31  -2.40                20.23
+                        MeanDecreaseGini
+ticker.multisma.signals             4.53
+Close.SMA.20                       16.79
+Close.SMA.50                       17.90
+daily.returns                      22.30
+Open                               16.93
+Close                              17.37
+High                               16.46
+Low                                17.44
+Volume                             31.96
+ticker.sma.signals                  1.39
+tdi                                20.57
+di                                 32.79
+ticker.bbands.signals               0.68
+dn                                 18.83
+mavg                               16.71
+up                                 18.38
+pctB                               19.81
+mfi                                21.80
+Close.EMA.14                       21.56
+ticker.rsi.signals                  0.74
+> 
+> print("Training Arima Model from Training dataset"+ trainStartDate + "to" + trainEndDate)
+Error in "Training Arima Model from Training dataset" + trainStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in "Predicting the Stocks for Test Period " + predictStartDate : 
+  non-numeric argument to binary operator
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+Warning messages:
+1: In rm(pred) : object 'pred' not found
+2: In eval(expr, envir, enclos) : NAs introduced by coercion
+> 
+> print("Completed prediction for Stock "+ tickerSymbol +" for Test Period "+ predictStartDate + "to" + predictEndDate)
+Error in "Completed prediction for Stock " + tickerSymbol : 
+  non-numeric argument to binary operator
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 15.94%
+Confusion matrix:
+     buy hold sell class.error
+buy    9  166    8  0.95081967
+hold  18 2019   18  0.01751825
+sell   7  168    3  0.98314607
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals   1.86  13.17  -4.19                12.29
+Close.SMA.20            -45.12 117.11 -51.49               115.31
+Close.SMA.50            -40.99 111.51 -57.59               109.64
+daily.returns            -1.65  89.97 -34.88                80.87
+Open                    -29.92 113.44 -50.71               112.38
+Close                   -43.40 115.00 -53.03               112.98
+High                    -41.80 111.12 -50.42               109.55
+Low                     -34.22 112.91 -49.01               111.72
+Volume                   35.54 127.02  -9.51               128.67
+ticker.sma.signals       -2.62   5.62  -9.58                 3.26
+tdi                      -7.23  93.74 -16.42                87.88
+di                       -6.82 153.72   3.61               153.30
+ticker.bbands.signals    -0.36 -12.77   1.27               -12.10
+dn                      -34.76 127.97 -59.32               126.30
+mavg                    -45.80 117.60 -51.72               115.55
+up                      -37.98 107.26 -52.82               105.94
+pctB                    -23.73 117.50 -39.00               114.42
+mfi                     -25.55 135.02 -24.90               130.86
+Close.EMA.14            -20.45 112.56 -37.94               110.29
+ticker.rsi.signals        6.61  21.39 -14.88                20.14
+                        MeanDecreaseGini
+ticker.multisma.signals             4.28
+Close.SMA.20                       34.03
+Close.SMA.50                       35.12
+daily.returns                      42.20
+Open                               34.40
+Close                              33.91
+High                               32.49
+Low                                35.05
+Volume                             65.52
+ticker.sma.signals                  2.13
+tdi                                39.91
+di                                 54.73
+ticker.bbands.signals               0.94
+dn                                 36.87
+mavg                               34.11
+up                                 35.37
+pctB                               38.05
+mfi                                40.77
+Close.EMA.14                       39.38
+ticker.rsi.signals                  1.47
+> 
+> print("Training Arima Model from Training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+Warning messages:
+1: In rm(pred) : object 'pred' not found
+2: In eval(expr, envir, enclos) : NAs introduced by coercion
+> 
+> print("Completed prediction for Stock for Test Period to" )
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 15.94%
+Confusion matrix:
+     buy hold sell class.error
+buy    8  166    9  0.95628415
+hold  17 2019   19  0.01751825
+sell   7  167    4  0.97752809
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals   1.15  10.95  -0.04                10.79
+Close.SMA.20            -44.94 117.29 -52.98               115.71
+Close.SMA.50            -40.52 113.36 -56.77               111.34
+daily.returns            -0.76  88.73 -37.18                79.97
+Open                    -29.24 113.11 -50.69               112.05
+Close                   -42.93 114.58 -52.62               112.75
+High                    -40.95 110.24 -49.77               108.51
+Low                     -33.22 114.85 -47.93               113.81
+Volume                   36.00 129.60 -11.03               132.19
+ticker.sma.signals       -1.94   5.37  -5.26                 3.99
+tdi                      -7.37  94.75 -17.57                88.57
+di                       -6.22 153.95   2.37               152.80
+ticker.bbands.signals     3.09 -10.12   0.67                -8.76
+dn                      -31.31 127.67 -58.90               126.19
+mavg                    -44.63 117.55 -51.54               115.80
+up                      -38.06 106.81 -51.70               105.62
+pctB                    -24.95 117.95 -39.47               114.12
+mfi                     -26.25 134.33 -25.99               129.87
+Close.EMA.14            -20.96 114.34 -38.50               111.77
+ticker.rsi.signals        4.13  18.66 -14.79                17.05
+                        MeanDecreaseGini
+ticker.multisma.signals             4.29
+Close.SMA.20                       33.97
+Close.SMA.50                       34.98
+daily.returns                      42.15
+Open                               34.66
+Close                              33.96
+High                               32.67
+Low                                35.11
+Volume                             65.44
+ticker.sma.signals                  2.10
+tdi                                39.54
+di                                 54.75
+ticker.bbands.signals               1.04
+dn                                 36.99
+mavg                               34.05
+up                                 35.47
+pctB                               37.85
+mfi                                40.73
+Close.EMA.14                       39.34
+ticker.rsi.signals                  1.42
+> 
+> print("Training Arima Model from Training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+Warning messages:
+1: In rm(pred) : object 'pred' not found
+2: In eval(expr, envir, enclos) : NAs introduced by coercion
+> 
+> print("Completed prediction for Stock for Test Period to" )
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> 
+> for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
+> 
+> 
+> predicted.price <- nrow(ret1)
+> 
+> # arima and random forest integration
+> for(i in 1:nrow(ret1))
++ {
++ 	if(ret1[i,6] == "buy")
++ 	{
++ 		predicted.price[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(ret1[i,6] == "hold")
++ 	{
++ 		predicted.price[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(ret1[i,6] == "sell")
++ 	{
++ 		predicted.price[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
+> 
+> predicted.price <- round(predicted.price)
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 1008
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 19.14%
+Confusion matrix:
+     buy hold sell class.error
+buy    4   67    6  0.94805195
+hold  11  722   17  0.03733333
+sell   1   72    9  0.89024390
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -3.48  11.14  -3.38                 9.24
+Close.SMA.20            -29.15  89.92 -39.58                86.90
+Close.SMA.50            -19.03  82.13 -45.21                78.82
+daily.returns            -2.87  51.82 -35.84                38.05
+Open                    -14.73  88.33 -37.47                86.01
+Close                     0.39  90.65 -37.84                89.92
+High                    -15.21  82.55 -26.45                81.49
+Low                     -18.41  94.07 -38.96                91.68
+Volume                    2.86  77.96 -27.55                69.10
+ticker.sma.signals       -2.30   9.63  -3.61                 8.04
+tdi                     -20.90  64.85 -21.88                51.97
+di                      -18.55  99.66  22.18                99.12
+ticker.bbands.signals     0.00  -0.59   0.00                -0.58
+dn                      -13.87 101.35 -40.24                99.58
+mavg                    -27.15  90.71 -38.87                87.73
+up                      -38.73  88.97 -32.07                84.94
+pctB                     -6.58  83.57 -27.04                79.55
+mfi                     -14.32  92.68 -20.64                85.14
+Close.EMA.14             -9.66  88.32 -17.58                85.42
+ticker.rsi.signals       -8.93  22.85  -7.32                19.94
+                        MeanDecreaseGini
+ticker.multisma.signals             2.90
+Close.SMA.20                       14.19
+Close.SMA.50                       13.84
+daily.returns                      16.20
+Open                               16.26
+Close                              19.43
+High                               16.77
+Low                                18.68
+Volume                             18.92
+ticker.sma.signals                  1.05
+tdi                                14.48
+di                                 21.70
+ticker.bbands.signals               0.03
+dn                                 17.84
+mavg                               14.18
+up                                 15.26
+pctB                               15.79
+mfi                                18.53
+Close.EMA.14                       19.29
+ticker.rsi.signals                  0.57
+> 
+> print("Training Arima Model from Training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+Warning message:
+In eval(expr, envir, enclos) : NAs introduced by coercion
+> 
+> print("Completed prediction for Stock for Test Period to" )
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> #library(caret) 
+> library(plyr)
+> 
+> 
+> 
+> tickerOHLC <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> #print(aapl)
+> 
+> ################################################################################
+> 
+> tickerDailySignal <- getPeriodReturnSignals(tickerOHLC,"daily",2)
+> smaMultiSmaSignal <- getMultiSmaSignals(tickerOHLC)
+> smaSignal <- getSmaSignals(tickerOHLC,20)
+> bbandSignal <- getBolingerBandsSignals(tickerOHLC)
+> rsiSignal <- getRsiSignals(tickerOHLC)
+> 
+> tickerTestData <- cbind(smaMultiSmaSignal,tickerDailySignal,smaSignal,bbandSignal,rsiSignal)
+> 
+> row.has.na <- apply(tickerTestData, 1, function(x){any(is.na(x))})
+> sum(row.has.na)
+> tickerTestData <- tickerTestData[!row.has.na,]
+> print("removing rows containing NA from test data")
+> 
+> tickerTestData$ticker.multisma.signals <- droplevels(tickerTestData$ticker.multisma.signals)
+> tickerTestData$ticker.return.signals <- droplevels(tickerTestData$ticker.return.signals)
+> tickerTestData$ticker.sma.signals <- droplevels(tickerTestData$ticker.sma.signals)
+> tickerTestData$ticker.bbands.signals <- droplevels(tickerTestData$ticker.bbands.signals)
+> tickerTestData$ticker.rsi.signals <- droplevels(tickerTestData$ticker.rsi.signals)
+> 
+> i<-nrow(tickerTestData)
+> print(i)
+> 
+> ticker.prediction <- predict(ticker.rfmodel, tickerTestData)
+> ticker.prediction.signals <- as.character(ticker.prediction)
+> 		
+> confusionmatrix <- table(ticker.prediction, tickerTestData$ticker.return.signals)
+> 
+> ticker.arima <- arimaPricePrediction(ticker.prediction)
+Error in ret$daily.returns : $ operator is invalid for atomic vectors
+> 		
+> ## For loop to calculate the predicted prices
+> ticker.close.prediction <- nrow(tickerTestData)
+> ticker.prediction.values <- as.numeric(as.character(ticker.prediction))		
+Warning message:
+NAs introduced by coercion 
+> 
+> for(i in 1:nrow(tickerTestData))
++ 			{
++ 				percent <- ticker.prediction.values[i]
++ 				percentincrease = (percent /100)*tickerTestData$Close[i]
++ 				ticker.close.prediction[i] =  (tickerTestData$Close[i] + percentincrease)
++ 			}
+> 
+> #confusionmatrix <- confusionMatrix(ticker.prediction, tickerTestData$daily.returns)
+> 
+> csvData <- data.frame(tickerTestData$ticker.return.signals,tickerTestData$daily.returns,ticker.arima,ticker.close.prediction,tickerTestData$Close,
++ 		tickerTestData$Open,tickerTestData$High,tickerTestData$Low, 
++ 		tickerTestData$Volume,tickerTestData$Close.SMA.20,tickerTestData$Close.SMA.50,
++ 		tickerTestData$dn,tickerTestData$up,tickerTestData$mavg,tickerTestData$pctB,tickerTestData$mfi)
+> 
+> print("renaming column names")
+> 
+> names(csvData)[names(csvData)=="ticker.close.prediction"] <- "predicted price"
+> names(csvData)[names(csvData)=="tickerTestData.daily.returns"] <- "actual returns %"
+> #names(csvData)[names(csvData)=="ticker.prediction"] <- "predicted returns %"
+> names(csvData)[names(csvData)=="ticker.arima"] <- "predicted returns %"
+> 
+> 
+> names(csvData)[names(csvData)=="tickerTestData.ticker.return.signals"] <- "recommendation signals"
+> names(csvData)[names(csvData)=="tickerTestData.Open"] <- "open"
+> names(csvData)[names(csvData)=="tickerTestData.High"] <- "high"
+> names(csvData)[names(csvData)=="tickerTestData.Low"] <- "low"
+> names(csvData)[names(csvData)=="tickerTestData.Close"] <- "close"
+> names(csvData)[names(csvData)=="tickerTestData.Volume"] <- "volume"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.20"] <- "20 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.50"] <- "50 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.dn"] <- "lower bband "
+> names(csvData)[names(csvData)=="tickerTestData.up"] <- "higher bband"
+> names(csvData)[names(csvData)=="tickerTestData.mavg"] <- "mavg"
+> names(csvData)[names(csvData)=="tickerTestData.pctB"] <- "bband pctb"
+> names(csvData)[names(csvData)=="tickerTestData.mfi"] <- "money flow index"
+> 
+> fileExtension<- "csv"
+> csvFileName <- paste(tickerSymbol,fileExtension,sep=".")
+> writeToCsv(csvData,csvFileName)
+> 
+> warnings()
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> 
+> 
+> arimaPricePrediction <- function(ret,predictionsignals)
++ {
++ 
++ winsize <- 30
++ 
++ #ret <- getPeriodReturnSignals(d,"daily",2)
++ x <- as.ts(ret$daily.returns)
++ ##fit <- auto.arima(x)
++ #f1 <- forecast(fit,h=200)
++ #plot(f1)
++ 
++ 
++ start <- 1
++ end <- nrow(ret)
++ #pred <- nrow(ret)
++ 
++ pred <-NULL
++ 
++ for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
++ 
++ ret1 <- as.data.frame(cbind(pred,ret))
++ 
++ 
++ for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
++ 
++ 
++ predicted.price.percent <- nrow(ret1)
++ 
++ # arima and random forest integration
++ for(i in 1:nrow(predictionsignals))
++ {
++ 	if(predictionsignals[i] == "buy")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(predictionsignals[i] == "hold")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(predictionsignals[i] == "sell")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
++ 
++ #predicted.price <- round(predicted.price)
++ 
++ return (predicted.price.percent)
++ 
++ 
++ #plot(f)
++ 
++ 
++ 
++ #fit1 <- bats(x)
++ #f1<-forecast(fit1)
++ #plot(f1)
++ 
++ #fit2 <- nnetar(x)
++ #f2<-forecast(fit2,h=200)
++ #plot(f2)
++ 	
++ }
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> #library(caret) 
+> library(plyr)
+> 
+> 
+> 
+> tickerOHLC <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> #print(aapl)
+> 
+> ################################################################################
+> 
+> tickerDailySignal <- getPeriodReturnSignals(tickerOHLC,"daily",2)
+> smaMultiSmaSignal <- getMultiSmaSignals(tickerOHLC)
+> smaSignal <- getSmaSignals(tickerOHLC,20)
+> bbandSignal <- getBolingerBandsSignals(tickerOHLC)
+> rsiSignal <- getRsiSignals(tickerOHLC)
+> 
+> tickerTestData <- cbind(smaMultiSmaSignal,tickerDailySignal,smaSignal,bbandSignal,rsiSignal)
+> 
+> row.has.na <- apply(tickerTestData, 1, function(x){any(is.na(x))})
+> sum(row.has.na)
+> tickerTestData <- tickerTestData[!row.has.na,]
+> print("removing rows containing NA from test data")
+> 
+> tickerTestData$ticker.multisma.signals <- droplevels(tickerTestData$ticker.multisma.signals)
+> tickerTestData$ticker.return.signals <- droplevels(tickerTestData$ticker.return.signals)
+> tickerTestData$ticker.sma.signals <- droplevels(tickerTestData$ticker.sma.signals)
+> tickerTestData$ticker.bbands.signals <- droplevels(tickerTestData$ticker.bbands.signals)
+> tickerTestData$ticker.rsi.signals <- droplevels(tickerTestData$ticker.rsi.signals)
+> 
+> i<-nrow(tickerTestData)
+> print(i)
+> 
+> ticker.prediction <- predict(ticker.rfmodel, tickerTestData)
+> ticker.prediction.signals <- as.character(ticker.prediction)
+> 		
+> confusionmatrix <- table(ticker.prediction, tickerTestData$ticker.return.signals)
+> 
+> ticker.arima <- arimaPricePrediction(tickerTestData,ticker.prediction.signals)
+Error in 1:nrow(predictionsignals) : argument of length 0
+> 		
+> ## For loop to calculate the predicted prices
+> ticker.close.prediction <- nrow(tickerTestData)
+> ticker.prediction.values <- as.numeric(as.character(ticker.prediction))		
+Warning message:
+NAs introduced by coercion 
+> 
+> for(i in 1:nrow(tickerTestData))
++ 			{
++ 				percent <- ticker.prediction.values[i]
++ 				percentincrease = (percent /100)*tickerTestData$Close[i]
++ 				ticker.close.prediction[i] =  (tickerTestData$Close[i] + percentincrease)
++ 			}
+> 
+> #confusionmatrix <- confusionMatrix(ticker.prediction, tickerTestData$daily.returns)
+> 
+> csvData <- data.frame(tickerTestData$ticker.return.signals,tickerTestData$daily.returns,ticker.arima,ticker.close.prediction,tickerTestData$Close,
++ 		tickerTestData$Open,tickerTestData$High,tickerTestData$Low, 
++ 		tickerTestData$Volume,tickerTestData$Close.SMA.20,tickerTestData$Close.SMA.50,
++ 		tickerTestData$dn,tickerTestData$up,tickerTestData$mavg,tickerTestData$pctB,tickerTestData$mfi)
+> 
+> print("renaming column names")
+> 
+> names(csvData)[names(csvData)=="ticker.close.prediction"] <- "predicted price"
+> names(csvData)[names(csvData)=="tickerTestData.daily.returns"] <- "actual returns %"
+> #names(csvData)[names(csvData)=="ticker.prediction"] <- "predicted returns %"
+> names(csvData)[names(csvData)=="ticker.arima"] <- "predicted returns %"
+> 
+> 
+> names(csvData)[names(csvData)=="tickerTestData.ticker.return.signals"] <- "recommendation signals"
+> names(csvData)[names(csvData)=="tickerTestData.Open"] <- "open"
+> names(csvData)[names(csvData)=="tickerTestData.High"] <- "high"
+> names(csvData)[names(csvData)=="tickerTestData.Low"] <- "low"
+> names(csvData)[names(csvData)=="tickerTestData.Close"] <- "close"
+> names(csvData)[names(csvData)=="tickerTestData.Volume"] <- "volume"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.20"] <- "20 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.50"] <- "50 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.dn"] <- "lower bband "
+> names(csvData)[names(csvData)=="tickerTestData.up"] <- "higher bband"
+> names(csvData)[names(csvData)=="tickerTestData.mavg"] <- "mavg"
+> names(csvData)[names(csvData)=="tickerTestData.pctB"] <- "bband pctb"
+> names(csvData)[names(csvData)=="tickerTestData.mfi"] <- "money flow index"
+> 
+> fileExtension<- "csv"
+> csvFileName <- paste(tickerSymbol,fileExtension,sep=".")
+> writeToCsv(csvData,csvFileName)
+> 
+> warnings()
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> 
+> 
+> arimaPricePrediction <- function(ret,predictionsignals)
++ {
++ 
++ winsize <- 30
++ 
++ #ret <- getPeriodReturnSignals(d,"daily",2)
++ x <- as.ts(ret$daily.returns)
++ ##fit <- auto.arima(x)
++ #f1 <- forecast(fit,h=200)
++ #plot(f1)
++ 
++ 
++ start <- 1
++ end <- nrow(ret)
++ #pred <- nrow(ret)
++ 
++ pred <-NULL
++ 
++ for(i in 1:nrow(ret)+1)
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
++ 
++ ret1 <- as.data.frame(cbind(pred,ret))
++ 
++ 
++ for(i in 1:4)
++ {
++ 	ret1[,i] <- (round(ret1[,i]))
++ }
++ 
++ 
++ predicted.price.percent <- nrow(ret1)
++ 
++ # arima and random forest integration
++ for(i in 1:nrow(ret1))
++ {
++ 	if(predictionsignals[i] == "buy")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,3]+ret1[i,4])/2
++ 	}
++ 	if(predictionsignals[i] == "hold")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,2]+ret1[i,3])/2
++ 	}
++ 	if(predictionsignals[i] == "sell")
++ 	{
++ 		predicted.price.percent[i] <- (ret1[i,1]+ret1[i,2])/2
++ 	}
++ 	
++ }
++ 
++ #predicted.price <- round(predicted.price)
++ 
++ return (predicted.price.percent)
++ 
++ 
++ #plot(f)
++ 
++ 
++ 
++ #fit1 <- bats(x)
++ #f1<-forecast(fit1)
++ #plot(f1)
++ 
++ #fit2 <- nnetar(x)
++ #f2<-forecast(fit2,h=200)
++ #plot(f2)
++ 	
++ }
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> #library(caret) 
+> library(plyr)
+> 
+> 
+> 
+> tickerOHLC <- getYahooData(tickerSymbol, predictStartDate, predictEndDate ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> #print(aapl)
+> 
+> ################################################################################
+> 
+> tickerDailySignal <- getPeriodReturnSignals(tickerOHLC,"daily",2)
+> smaMultiSmaSignal <- getMultiSmaSignals(tickerOHLC)
+> smaSignal <- getSmaSignals(tickerOHLC,20)
+> bbandSignal <- getBolingerBandsSignals(tickerOHLC)
+> rsiSignal <- getRsiSignals(tickerOHLC)
+> 
+> tickerTestData <- cbind(smaMultiSmaSignal,tickerDailySignal,smaSignal,bbandSignal,rsiSignal)
+> 
+> row.has.na <- apply(tickerTestData, 1, function(x){any(is.na(x))})
+> sum(row.has.na)
+> tickerTestData <- tickerTestData[!row.has.na,]
+> print("removing rows containing NA from test data")
+> 
+> tickerTestData$ticker.multisma.signals <- droplevels(tickerTestData$ticker.multisma.signals)
+> tickerTestData$ticker.return.signals <- droplevels(tickerTestData$ticker.return.signals)
+> tickerTestData$ticker.sma.signals <- droplevels(tickerTestData$ticker.sma.signals)
+> tickerTestData$ticker.bbands.signals <- droplevels(tickerTestData$ticker.bbands.signals)
+> tickerTestData$ticker.rsi.signals <- droplevels(tickerTestData$ticker.rsi.signals)
+> 
+> i<-nrow(tickerTestData)
+> print(i)
+> 
+> ticker.prediction <- predict(ticker.rfmodel, tickerTestData)
+> ticker.prediction.signals <- as.character(ticker.prediction)
+> 		
+> confusionmatrix <- table(ticker.prediction, tickerTestData$ticker.return.signals)
+> 
+> ticker.arima <- arimaPricePrediction(tickerTestData,ticker.prediction.signals)
+> 		
+> ## For loop to calculate the predicted prices
+> ticker.close.prediction <- nrow(tickerTestData)
+> ticker.prediction.values <- as.numeric(as.character(ticker.prediction))		
+Warning message:
+NAs introduced by coercion 
+> 
+> for(i in 1:nrow(tickerTestData))
++ 			{
++ 				percent <- ticker.prediction.values[i]
++ 				percentincrease = (percent /100)*tickerTestData$Close[i]
++ 				ticker.close.prediction[i] =  (tickerTestData$Close[i] + percentincrease)
++ 			}
+> 
+> #confusionmatrix <- confusionMatrix(ticker.prediction, tickerTestData$daily.returns)
+> 
+> csvData <- data.frame(tickerTestData$ticker.return.signals,tickerTestData$daily.returns,ticker.arima,ticker.close.prediction,tickerTestData$Close,
++ 		tickerTestData$Open,tickerTestData$High,tickerTestData$Low, 
++ 		tickerTestData$Volume,tickerTestData$Close.SMA.20,tickerTestData$Close.SMA.50,
++ 		tickerTestData$dn,tickerTestData$up,tickerTestData$mavg,tickerTestData$pctB,tickerTestData$mfi)
+> 
+> print("renaming column names")
+> 
+> names(csvData)[names(csvData)=="ticker.close.prediction"] <- "predicted price"
+> names(csvData)[names(csvData)=="tickerTestData.daily.returns"] <- "actual returns %"
+> #names(csvData)[names(csvData)=="ticker.prediction"] <- "predicted returns %"
+> names(csvData)[names(csvData)=="ticker.arima"] <- "predicted returns %"
+> 
+> 
+> names(csvData)[names(csvData)=="tickerTestData.ticker.return.signals"] <- "recommendation signals"
+> names(csvData)[names(csvData)=="tickerTestData.Open"] <- "open"
+> names(csvData)[names(csvData)=="tickerTestData.High"] <- "high"
+> names(csvData)[names(csvData)=="tickerTestData.Low"] <- "low"
+> names(csvData)[names(csvData)=="tickerTestData.Close"] <- "close"
+> names(csvData)[names(csvData)=="tickerTestData.Volume"] <- "volume"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.20"] <- "20 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.Close.SMA.50"] <- "50 day sma"
+> names(csvData)[names(csvData)=="tickerTestData.dn"] <- "lower bband "
+> names(csvData)[names(csvData)=="tickerTestData.up"] <- "higher bband"
+> names(csvData)[names(csvData)=="tickerTestData.mavg"] <- "mavg"
+> names(csvData)[names(csvData)=="tickerTestData.pctB"] <- "bband pctb"
+> names(csvData)[names(csvData)=="tickerTestData.mfi"] <- "money flow index"
+> 
+> fileExtension<- "csv"
+> csvFileName <- paste(tickerSymbol,fileExtension,sep=".")
+> writeToCsv(csvData,csvFileName)
+> 
+> warnings()
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 1008
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 63.92%
+Confusion matrix:
+     buy hold sell class.error
+buy  126  102  105   0.6216216
+hold  97  118   70   0.5859649
+sell 109   98   84   0.7113402
+                           buy  hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -2.56 -3.13   2.71                -1.29
+Close.SMA.20              8.25 14.88  -6.62                14.70
+Close.SMA.50              0.38 24.39  -7.06                14.13
+daily.returns            -5.22 15.19 -12.73                -1.83
+Open                     14.13 28.31 -17.42                22.51
+Close                    16.27 27.91  -9.71                31.95
+High                      4.25 25.30 -10.15                17.83
+Low                       7.94 32.78 -18.53                20.32
+Volume                    0.39 39.19  -8.69                17.48
+ticker.sma.signals        4.14 11.60  -2.65                 8.61
+tdi                      -5.09 21.37  -4.23                 7.22
+di                      -30.23 19.04   5.65                -6.02
+ticker.bbands.signals    -2.23 -8.80  -2.42                -9.40
+dn                       10.87 16.08  -9.63                14.82
+mavg                      9.66 13.67  -6.06                15.46
+up                       -8.32 17.60  -1.85                 5.28
+pctB                    -14.07 40.89  -7.50                12.93
+mfi                     -14.48 33.12  -8.10                 5.70
+Close.EMA.14            -10.62 44.56  -9.91                16.75
+ticker.rsi.signals        1.42  1.24 -12.89                -6.05
+                        MeanDecreaseGini
+ticker.multisma.signals             1.81
+Close.SMA.20                       32.10
+Close.SMA.50                       35.15
+daily.returns                      21.42
+Open                               36.19
+Close                              37.04
+High                               33.91
+Low                                35.10
+Volume                             50.39
+ticker.sma.signals                  3.19
+tdi                                42.29
+di                                 39.43
+ticker.bbands.signals               0.24
+dn                                 34.82
+mavg                               32.02
+up                                 35.49
+pctB                               44.43
+mfi                                44.58
+Close.EMA.14                       43.49
+ticker.rsi.signals                  0.68
+Time difference of 41.82965 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+[1] "removing rows containing NA from test data"
+[1] 611
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 90.22551 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 62%
+Confusion matrix:
+     buy hold sell class.error
+buy  266  294  254   0.6732187
+hold 235  399  191   0.5163636
+sell 277  247  253   0.6743887
+                           buy  hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -9.96 -3.28   1.10                -6.35
+Close.SMA.20             -2.24 40.20 -11.85                33.37
+Close.SMA.50             -0.39 52.56 -15.28                42.16
+daily.returns           -18.24 13.94  -8.62                -7.77
+Open                     -5.05 37.77  -6.84                31.29
+Close                    -2.96 48.36 -14.27                38.05
+High                     -8.93 42.39 -10.12                30.43
+Low                      -3.05 41.02 -10.91                32.13
+Volume                   -2.11 88.85  -7.58                50.34
+ticker.sma.signals        6.25 16.64   4.97                16.98
+tdi                     -12.37 56.30  13.49                37.16
+di                      -12.22 49.96 -12.24                18.12
+ticker.bbands.signals    13.44 -7.80  -2.11                 4.67
+dn                        8.58 45.70 -19.14                38.75
+mavg                     -3.06 39.42 -10.14                33.39
+up                       -0.04 47.61 -20.45                34.81
+pctB                    -17.82 66.69 -13.27                30.42
+mfi                     -16.00 52.60 -12.27                18.65
+Close.EMA.14            -12.94 62.75 -14.91                30.52
+ticker.rsi.signals       13.27 11.06 -15.57                 6.93
+                        MeanDecreaseGini
+ticker.multisma.signals             4.11
+Close.SMA.20                       84.56
+Close.SMA.50                       96.37
+daily.returns                      53.54
+Open                               90.87
+Close                              91.12
+High                               87.58
+Low                                89.07
+Volume                            148.02
+ticker.sma.signals                  8.46
+tdi                               120.08
+di                                113.81
+ticker.bbands.signals               1.90
+dn                                 94.55
+mavg                               84.60
+up                                 95.69
+pctB                              114.26
+mfi                               115.76
+Close.EMA.14                      110.39
+ticker.rsi.signals                  4.51
+Time difference of 225.3967 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+[1] "removing rows containing NA from test data"
+[1] 611
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 274.281 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 62.04%
+Confusion matrix:
+     buy hold sell class.error
+buy  262  293  259   0.6781327
+hold 232  400  193   0.5151515
+sell 277  245  255   0.6718147
+                           buy  hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals -10.13 -1.91   0.50                -6.28
+Close.SMA.20             -3.96 41.15 -10.61                33.58
+Close.SMA.50             -1.86 54.71 -17.23                40.66
+daily.returns           -17.01 15.28  -8.61                -6.34
+Open                     -3.75 37.12  -5.45                32.67
+Close                    -3.03 48.96 -13.59                38.79
+High                    -10.73 42.29  -7.89                29.63
+Low                      -3.98 41.86  -9.71                33.58
+Volume                   -1.39 89.73  -7.91                51.66
+ticker.sma.signals        4.31 15.65   5.63                15.41
+tdi                     -12.68 59.05  13.62                39.17
+di                      -11.52 53.34 -13.01                20.15
+ticker.bbands.signals    14.34 -7.52  -1.74                 5.81
+dn                        7.16 48.81 -22.62                38.29
+mavg                     -2.43 41.13 -10.63                33.96
+up                       -0.31 50.04 -20.93                37.44
+pctB                    -18.29 67.18 -14.44                29.16
+mfi                     -14.62 54.63 -13.32                20.68
+Close.EMA.14            -13.49 64.46 -16.86                30.57
+ticker.rsi.signals       12.97 10.69 -14.16                 7.45
+                        MeanDecreaseGini
+ticker.multisma.signals             4.09
+Close.SMA.20                       84.40
+Close.SMA.50                       96.35
+daily.returns                      53.50
+Open                               90.72
+Close                              90.97
+High                               87.62
+Low                                89.54
+Volume                            148.14
+ticker.sma.signals                  8.52
+tdi                               119.82
+di                                113.65
+ticker.bbands.signals               1.86
+dn                                 94.92
+mavg                               84.52
+up                                 96.08
+pctB                              114.52
+mfi                               115.48
+Close.EMA.14                      110.09
+ticker.rsi.signals                  4.47
+Time difference of 240.1206 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+[1] "removing rows containing NA from test data"
+[1] 611
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 289.5536 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "IBM"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 10.39%
+Confusion matrix:
+     buy hold sell class.error
+buy    3  109    8  0.97500000
+hold  11 2156   13  0.01100917
+sell   3  107    6  0.94827586
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals   3.62  15.04  -7.01                14.60
+Close.SMA.20            -42.67 108.46 -46.64               107.32
+Close.SMA.50            -43.95 102.45 -39.27               101.27
+daily.returns            -4.33  63.47 -28.51                56.59
+Open                    -36.45 104.84 -44.00               103.86
+Close                   -44.14 107.53 -46.35               106.10
+High                    -38.12 103.42 -40.81               102.39
+Low                     -36.80 107.18 -48.50               105.89
+Volume                    5.89 103.92  -4.78               102.55
+ticker.sma.signals       -8.37  19.36  -4.43                17.94
+tdi                      -0.68  91.14 -24.57                86.74
+di                        4.92 136.31  12.79               138.19
+ticker.bbands.signals    -2.82 -12.90   0.82               -12.88
+dn                      -30.87 110.67 -51.98               109.29
+mavg                    -43.05 109.96 -46.57               108.74
+up                      -40.16 100.75 -40.98                99.54
+pctB                    -14.21  99.05 -25.86                97.79
+mfi                     -24.76 118.54 -23.53               115.01
+Close.EMA.14            -21.25 105.98 -28.32               104.36
+ticker.rsi.signals        0.18  23.03  -8.57                22.31
+                        MeanDecreaseGini
+ticker.multisma.signals             2.98
+Close.SMA.20                       25.19
+Close.SMA.50                       25.47
+daily.returns                      15.56
+Open                               24.78
+Close                              24.53
+High                               24.52
+Low                                24.99
+Volume                             41.68
+ticker.sma.signals                  1.37
+tdi                                29.01
+di                                 39.59
+ticker.bbands.signals               0.67
+dn                                 26.05
+mavg                               25.40
+up                                 23.46
+pctB                               26.27
+mfi                                27.03
+Close.EMA.14                       27.21
+ticker.rsi.signals                  1.16
+Time difference of 238.4375 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+[1] "removing rows containing NA from test data"
+[1] 611
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 289.3594 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "AAPL"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 2515
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 29.59%
+Confusion matrix:
+     buy hold sell class.error
+buy   10  346   15  0.97304582
+hold  41 1682   29  0.03995434
+sell   9  275    9  0.96928328
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -1.38  -3.99  -4.30                -5.12
+Close.SMA.20            -77.48 137.51 -60.56               133.27
+Close.SMA.50            -84.05 151.45 -63.37               147.46
+daily.returns           -22.96  59.29 -29.04                38.93
+Open                    -73.95 126.06 -56.60               121.93
+Close                   -72.18 137.52 -62.89               133.30
+High                    -81.36 139.52 -53.98               135.35
+Low                     -73.42 133.25 -62.40               128.26
+Volume                  -53.31 118.99 -16.13               103.90
+ticker.sma.signals       -6.75  -6.80  -8.20               -10.66
+tdi                     -61.81 143.65 -46.31               124.64
+di                      -69.12 143.16 -40.27               129.96
+ticker.bbands.signals    -6.31  -0.53  -1.36                -2.94
+dn                      -79.49 150.33 -69.96               145.42
+mavg                    -78.06 137.43 -59.81               133.54
+up                      -77.40 130.26 -54.77               126.64
+pctB                    -70.45 142.36 -66.71               128.55
+mfi                     -65.10 135.88 -29.83               119.13
+Close.EMA.14            -54.35 149.82 -59.37               143.28
+ticker.rsi.signals      -20.73  37.60 -15.00                36.00
+                        MeanDecreaseGini
+ticker.multisma.signals             3.33
+Close.SMA.20                       55.13
+Close.SMA.50                       61.50
+daily.returns                      45.74
+Open                               57.77
+Close                              58.28
+High                               58.04
+Low                                58.00
+Volume                             84.77
+ticker.sma.signals                  3.79
+tdi                                74.79
+di                                 76.79
+ticker.bbands.signals               2.17
+dn                                 61.41
+mavg                               55.02
+up                                 59.41
+pctB                               74.63
+mfi                                77.04
+Close.EMA.14                       82.18
+ticker.rsi.signals                  2.49
+Time difference of 269.1329 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 710
+[1] "removing rows containing NA from test data"
+[1] 611
+[1] "renaming column names"
+Warning message:
+In eval(expr, envir, enclos) : NAs introduced by coercion
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 319.9117 secs
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkya
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+> library(TTR)
+> library(tseries)
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> tickerSymbol <- "AAPL"
+> 
+> print("Building the Model")
+[1] "Building the Model"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> print("Building Technical Indicators")
+[1] "Building Technical Indicators"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> print("Loading the Training Data from API's")
+[1] "Loading the Training Data from API's"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 3017
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> print("Training Random Forest Model from training dataset")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 27.07%
+Confusion matrix:
+     buy hold sell class.error
+buy    8  383   16  0.98034398
+hold  46 2111   31  0.03519196
+sell   8  306    9  0.97213622
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -2.70  -8.04  -3.47                -9.08
+Close.SMA.20            -76.27 133.91 -63.79               130.17
+Close.SMA.50            -85.25 148.50 -64.42               144.90
+daily.returns           -25.10  67.45 -30.89                47.39
+Open                    -73.80 122.83 -58.03               119.08
+Close                   -73.27 130.48 -65.72               126.34
+High                    -81.13 129.38 -56.51               125.56
+Low                     -71.51 125.17 -64.86               121.06
+Volume                  -55.29 141.43 -11.87               126.24
+ticker.sma.signals       -5.78  -5.45  -8.65                -9.05
+tdi                     -74.76 158.61 -56.64               140.37
+di                      -75.20 159.85 -46.61               148.44
+ticker.bbands.signals    -8.68  -6.46   1.31                -8.06
+dn                      -79.86 139.87 -68.65               135.01
+mavg                    -75.99 131.36 -62.36               127.47
+up                      -74.14 129.78 -59.10               126.07
+pctB                    -74.34 154.14 -69.92               142.35
+mfi                     -68.00 143.63 -31.52               128.23
+Close.EMA.14            -58.23 164.93 -64.87               158.09
+ticker.rsi.signals      -22.91  39.69 -15.03                37.99
+                        MeanDecreaseGini
+ticker.multisma.signals             3.73
+Close.SMA.20                       62.33
+Close.SMA.50                       71.50
+daily.returns                      50.38
+Open                               66.13
+Close                              66.93
+High                               66.44
+Low                                66.96
+Volume                             96.70
+ticker.sma.signals                  4.11
+tdi                                81.79
+di                                 84.89
+ticker.bbands.signals               2.70
+dn                                 69.32
+mavg                               62.24
+up                                 66.69
+pctB                               82.95
+mfi                                84.95
+Close.EMA.14                       90.63
+ticker.rsi.signals                  2.79
+Time difference of 419.5235 secs
+> 
+> print("Training Arima Model from Training dataset")
+[1] "Training Arima Model from Training dataset"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/arima/ArimaModelPrices.R")
+> 
+> print("Predicting the Stocks for Test Period")
+[1] "Predicting the Stocks for Test Period"
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/run/testmodels/PredictTickerPrices.R")
+[1] 2
+[1] " calculating daily return signals "
+[1] " calculated percent daily returns "
+[1] " calculating daily return signals "
+NULL
+[1] 230
+[1] "removing rows containing NA from test data"
+[1] 131
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> print("Completed prediction for Stock for Test Period to" )
+[1] "Completed prediction for Stock for Test Period to"
+> now2 <- Sys.time()
+> 
+> print(difftime(now2,now1,unit="sec"))
+Time difference of 430.8923 secs
+> 
+> 
+> 
+> 
+> q()
+Save workspace image? [y/n/c]: q()
+Save workspace image? [y/n/c]: q()
+Save workspace image? [y/n/c]: q()
+Save workspace image? [y/n/c]: n
+
+[INFO] Dec 8, 2013 4:34:43 AM - R disconnected.

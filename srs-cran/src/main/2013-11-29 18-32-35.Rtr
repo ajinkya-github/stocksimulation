@@ -1,0 +1,58 @@
+﻿##------ Nov 29, 2013 6:32:35 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> install.packages(forecast)
+Error in install.packages(forecast) : object 'forecast' not found
+> install.packages('forecast')
+--- Please select a CRAN mirror for use in this session ---
+also installing the dependencies 'fracdiff', 'Rcpp', 'RcppArmadillo', 'colorspace'
+
+trying URL 'http://mirrors.softliste.de/cran/bin/macosx/contrib/3.0/fracdiff_1.4-2.tgz'
+Content type 'application/x-gzip' length 82903 bytes (80 Kb)
+opened URL
+==================================================
+downloaded 80 Kb
+
+trying URL 'http://mirrors.softliste.de/cran/bin/macosx/contrib/3.0/Rcpp_0.10.6.tgz'
+Content type 'application/x-gzip' length 3725335 bytes (3.6 Mb)
+opened URL
+==================================================
+downloaded 3.6 Mb
+
+trying URL 'http://mirrors.softliste.de/cran/bin/macosx/contrib/3.0/RcppArmadillo_0.3.920.3.tgz'
+Content type 'application/x-gzip' length 1178450 bytes (1.1 Mb)
+opened URL
+==================================================
+downloaded 1.1 Mb
+
+trying URL 'http://mirrors.softliste.de/cran/bin/macosx/contrib/3.0/colorspace_1.2-4.tgz'
+Content type 'application/x-gzip' length 367907 bytes (359 Kb)
+opened URL
+==================================================
+downloaded 359 Kb
+
+trying URL 'http://mirrors.softliste.de/cran/bin/macosx/contrib/3.0/forecast_4.8.tgz'
+Content type 'application/x-gzip' length 1179737 bytes (1.1 Mb)
+opened URL
+=============================================
+[INFO] Nov 29, 2013 7:28:14 PM - R stopped.

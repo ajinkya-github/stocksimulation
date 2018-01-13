@@ -1,0 +1,188 @@
+Time difference of 0.4252188 secs
+Time difference of 0.374172 secs
+Time difference of 1.414145 secs
+Time difference of 1.366869 secs
+Time difference of 1.460816 secs
+Time difference of 10.40883 secs
+Time difference of 9.446574 secs
+Time difference of 12.06047 secs
+Time difference of 13.22175 secs
+Time difference of 12.70474 secs
+Time difference of 9.334551 secs
+Time difference of 9.442621 secs
+Time difference of 9.261629 secs
+Time difference of 13.69761 secs
+Time difference of 12.10105 secs
+Time difference of 9.619006 secs
+Time difference of 10.00157 secs
+Time difference of 12.70195 secs
+Time difference of 12.22603 secs
+Time difference of 12.82364 secs
+Time difference of 19.27461 secs
+--- Please select a CRAN mirror for use in this session ---
+
+The downloaded binary packages are in
+	/var/folders/ft/m40j_q3s4z35ksylss2_6w_w0000gn/T//Rtmpy4W24Z/downloaded_packages
+[1] 0.05
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 5740
+[1] 0.05
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 5740
+[1] 0.05
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 5740
+Time difference of 19.65991 secs
+[1] 0.05
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 698
+Time difference of 3.098454 secs
+[1] 0.05
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 196
+Time difference of 2.0723 secs
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 196
+Time difference of 1.188577 secs
+Time difference of 0.1341329 secs
+Time difference of 0.941097 secs
+Time difference of 0.7021408 secs
+Time difference of 0.7820249 secs
+Time difference of 0.8091619 secs
+Time difference of 0.7203929 secs
+Time difference of 0.7065969 secs
+Time difference of 0.6981909 secs
+Time difference of 0.7075968 secs
+Time difference of 0.7308731 secs
+Time difference of 0.6871731 secs
+Time difference of 0.853163 secs
+Time difference of 0.69226 secs
+Time difference of 0.6998088 secs
+Time difference of 0.683574 secs
+Time difference of 0.726804 secs
+Time difference of 0.6742001 secs
+Time difference of 1.103549 secs
+Time difference of 0.716059 secs
+Time difference of 0.8879411 secs
+Time difference of 0.7599678 secs
+Time difference of 0.713007 secs
+Time difference of 0.5016179 secs
+Time difference of 0.831341 secs
+Time difference of 0.7171819 secs
+Time difference of 0.779213 secs
+Time difference of 0.772649 secs
+Time difference of 0.6727409 secs
+Time difference of 0.779083 secs
+Time difference of 1.054907 secs
+Time difference of 0.9447401 secs
+Time difference of 0.7150679 secs
+Time difference of 0.661696 secs
+Time difference of 0.783303 secs
+Time difference of 0.7999251 secs
+Time difference of 0.757993 secs
+Time difference of 0.721559 secs
+Time difference of 0.7108641 secs
+Time difference of 0.6934171 secs
+Time difference of 0.7976041 secs
+Time difference of 0.7223079 secs
+Time difference of 0.722086 secs
+Time difference of 0.725158 secs
+Time difference of -213.7296 secs
+Time difference of 0.7579641 secs
+Time difference of 0.7208569 secs
+function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+    pattern) 
+{
+    if (!missing(name)) {
+        nameValue <- try(name, silent = TRUE)
+        if (identical(class(nameValue), "try-error")) {
+            name <- substitute(name)
+            if (!is.character(name)) 
+                name <- deparse(name)
+            warning(gettextf("%s converted to character string", 
+                sQuote(name)), domain = NA)
+            pos <- name
+        }
+        else pos <- nameValue
+    }
+    all.names <- .Internal(ls(envir, all.names))
+    if (!missing(pattern)) {
+        if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
+            ll != length(grep("]", pattern, fixed = TRUE))) {
+            if (pattern == "[") {
+                pattern <- "\\["
+                warning("replaced regular expression pattern '[' by  '\\\\['")
+            }
+            else if (length(grep("[^\\\\]\\[<-", pattern))) {
+                pattern <- sub("\\[<-", "\\\\\\[<-", pattern)
+                warning("replaced '[<-' by '\\\\[<-' in regular expression pattern")
+            }
+        }
+        grep(pattern, all.names, value = TRUE)
+    }
+    else all.names
+}
+<bytecode: 0x7fe6b9a1f668>
+<environment: namespace:base>
+Time difference of 0.785862 secs
+    x  y
+1   1  5
+2   2  6
+3   3  7
+4   4  8
+5   5  9
+6   6 10
+8   8 12
+9   9 13
+10 10 14
+  x  y
+7 7 11
+    x  y
+1   1  5
+2   2  6
+3   3  7
+4   4  8
+5   5  9
+6   6 10
+8   8 12
+9   9 13
+10 10 14
+  x  y
+7 7 11
+    x  y
+1   1  5
+2   2  6
+3   3  7
+4   4  8
+5   5  9
+6   6 10
+8   8 12
+9   9 13
+10 10 14
+  x  y
+7 7 11
+    x  y
+1   1  5
+2   2  6
+3   3  7
+4   4  8
+5   5  9
+6   6 10
+8   8 12
+9   9 13
+10 10 14
+  x  y
+7 7 11

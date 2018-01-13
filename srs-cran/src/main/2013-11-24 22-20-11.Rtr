@@ -1,0 +1,140 @@
+﻿##------ Nov 24, 2013 10:20:11 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+randomForest 4.6-7
+Type rfNews() to see new features/changes/bug fixes.
+> library(quantmod)
+Loading required package: Defaults
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object is masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+Loading required package: TTR
+Version 0.4-0 included new data defaults. See ?getSymbols.
+> library(TTR)
+> library(tseries)
+
+    'tseries' version: 0.10-32
+
+    'tseries' is a package for time series analysis and computational
+    finance.
+
+    See 'library(help="tseries")' for details.
+
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 1259
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+Loading required package: XML
+[1] "removing rows containing NA"
+[1] "dropping unused levels"
+
+Call:
+ randomForest(formula = ticker.return.signals ~ ., data = tickerTrainData,      ntree = 10000, importance = TRUE, na.action = na.omit) 
+               Type of random forest: classification
+                     Number of trees: 10000
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 0.09%
+Confusion matrix:
+     buy hold sell class.error
+buy   93    0    0      0.0000
+hold   0  987    0      0.0000
+sell   0    1   79      0.0125
+                           buy   hold   sell MeanDecreaseAccuracy
+ticker.multisma.signals  -0.39   8.13  -0.70                 7.67
+Close.SMA.20             -0.23  46.14   0.67                45.66
+Close.SMA.50             -0.03  43.57   4.02                43.30
+Close                   -12.41  51.44  16.01                51.74
+daily.returns           437.24 334.67 316.42               400.11
+ticker.sma.signals        0.99  16.43   9.99                18.17
+tdi                      -9.15  33.45 -10.57                26.08
+di                       -3.35  45.31  -2.69                41.80
+ticker.bbands.signals    -6.35  12.86  -4.33                 9.46
+dn                       -0.33  48.12   2.10                47.77
+mavg                     -2.05  46.75   0.49                46.17
+up                       -0.68  44.23   4.27                44.11
+pctB                      9.92  40.16  31.63                48.49
+mfi                      11.39  44.09  -7.37                42.02
+Close.EMA.14              1.87  47.98  42.67                56.91
+ticker.rsi.signals        1.28   4.55   2.94                 5.29
+                        MeanDecreaseGini
+ticker.multisma.signals             0.23
+Close.SMA.20                        7.83
+Close.SMA.50                        6.10
+Close                              13.37
+daily.returns                     207.35
+ticker.sma.signals                  1.31
+tdi                                 4.44
+di                                  7.62
+ticker.bbands.signals               0.34
+dn                                 10.27
+mavg                                7.82
+up                                  6.66
+pctB                               15.94
+mfi                                 6.64
+Close.EMA.14                       11.03
+ticker.rsi.signals                  0.22

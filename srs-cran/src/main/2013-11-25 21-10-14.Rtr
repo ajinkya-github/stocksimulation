@@ -1,0 +1,143 @@
+﻿##------ Nov 25, 2013 9:10:14 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+randomForest 4.6-7
+Type rfNews() to see new features/changes/bug fixes.
+> library(ttr)
+Error in library(ttr) : there is no package called 'ttr'
+> 
+> d <- getYahooData(tickerSymbol, 20130101, 20130808 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error: could not find function "getYahooData"
+> 
+> dv<-volatility(OHLC, n = 10, calc = "close")
+Error: could not find function "volatility"
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object is masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> 
+> d <- getYahooData(tickerSymbol, 20130101, 20130808 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+Error in paste("http://ichart.finance.yahoo.com/table.csv?s=", symbol,  : 
+  object 'tickerSymbol' not found
+> 
+> dv<-volatility(OHLC, n = 10, calc = "close")
+Error in inherits(x, "xts") : object 'OHLC' not found
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> 
+> d <- getYahooData("IBM", 20130101, 20130808 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> 
+> dv<-volatility(OHLC, n = 10, calc = "close")
+Error in inherits(x, "xts") : object 'OHLC' not found
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> 
+> d <- getYahooData("IBM", 20130101, 20130808 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> 
+> dv <- volatility(d, n = 10, calc = "close")
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> 
+> library(randomForest)
+> library(quantmod)
+Loading required package: Defaults
+Version 0.4-0 included new data defaults. See ?getSymbols.
+> library(TTR)
+> library(tseries)
+
+    'tseries' version: 0.10-32
+
+    'tseries' is a package for time series analysis and computational
+    finance.
+
+    See 'library(help="tseries")' for details.
+
+> 
+> closeAllConnections()
+> 
+> memory.limit(size=2566)
+[1] Inf
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> rm(list = ls())
+> 
+> 
+> now1 <- Sys.time()
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/RemoveAll.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerBBandsSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturns.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerMultiSmaSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerRsiSignals.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerSmaSignals.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/utils/IDOperator.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/persistence/CsvPersistence.R")
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/etl/Load.R")
+[1] 0.02
+[1] " calculating daily return signals "
+[1] " calculating daily return signals "
+NULL
+[1] 1511
+Warning message:
+'memory.limit()' is Windows-specific 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/models/randomforest/RandomForestModelSignals.R")
+Loading required package: XML
+[1] "removing rows containing NA"
+[1] "dropping unused levels"

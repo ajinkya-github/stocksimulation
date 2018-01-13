@@ -1,0 +1,3388 @@
+﻿##------ Nov 30, 2013 8:46:50 PM ------##
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin10.8.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> cat("welcome to CRAN-R")
+welcome to CRAN-R> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+randomForest 4.6-7
+Type rfNews() to see new features/changes/bug fixes.
+> library(TTR)
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object is masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
+> library(forecast)
+This is forecast 4.8 
+
+> library(quantmod)
+Loading required package: Defaults
+Version 0.4-0 included new data defaults. See ?getSymbols.
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- as.data.frame(nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in rbind(deparse.level, ...) : 
+  numbers of columns of arguments do not match
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- (nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- as.ts(nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- as.ts(nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- as.xts(nrow(ret))
+Error in as.xts.integer(nrow(ret)) : 
+  order.by must be either 'names()' or otherwise specified
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- data.frame(nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in rbind(deparse.level, ...) : 
+  numbers of columns of arguments do not match
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- data.frame(nrow(ret))
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- data.frame(cbind(f$lower,f$upper,f$mean))
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in rbind(deparse.level, ...) : 
+  numbers of columns of arguments do not match
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> pred <- nrow(ret)
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in rbind(pred, predictedrange) : object 'pred' not found
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred
+Error: object 'pred' not found
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in rbind(pred, predictedrange) : object 'pred' not found
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret <- c(ret,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20090101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 41
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret <- cbind(ret,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- cbind(ret,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- cbind(ret$daily.returns,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- cbind(ret[,1],ret[,2],pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- cbind(ret$ticker.return.signals,ret$daily.returns,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- cbind(as.factor(ret$ticker.return.signals),ret$daily.returns,pred)
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(as.factor(ret$ticker.return.signals),ret$daily.returns,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(ret,pred)
+Error in as.data.frame.data.frame(ret, pred) : 
+  invalid 'row.names', length 1470 for a data frame with 294 rows
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 15
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily", 2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : 
+  object 'percent' not found
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d, "daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : 
+  object 'percent' not found
+> start<- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : 
+  object 'percent' not found
+> start<- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in cbind(ret, pred) : object 'ret' not found
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : 
+  object 'percent' not found
+> start <- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in cbind(ret, pred) : object 'ret' not found
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  arguments imply differing number of rows: 293, 294
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20080303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 42
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  arguments imply differing number of rows: 41, 42
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 294, 293
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20080303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 42
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 42, 41
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20080303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 42
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  arguments imply differing number of rows: 41, 42
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 42, 41
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+Error in data.frame(ticker.return.signals, ticker.return, ticker.return.factors,  : 
+  arguments imply differing number of rows: 293, 294
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 42, 41
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+[1] " calculating daily returns "
+Error in try.xts(x) : 
+  Error in as.xts.double(x, ..., .RECLASS = TRUE) :   order.by must be either 'names()' or otherwise specified
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 42, 41
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- getRsiSignals(d)
+Error in rsi[i, "Close.EMA.14"] : incorrect number of dimensions
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- getRsiSignals(d)
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- getRsiSignals(d)
+> 
+> 
+> b <- getBolingerBandsSignals(d)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20100303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- getRsiSignals(d)
+> 
+> 
+> b <- getBolingerBandsSignals(d)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> 
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20100303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- getRsiSignals(d)
+> 
+> 
+> b <- getBolingerBandsSignals(d)
+> m <- getMultiSmaSignals(d)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- 
++ start <- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+Warning message:
+In rm(pred) : object 'pred' not found
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in cbind(ret, pred) : object 'ret' not found
+> plot(f)
+Error in plot(f) : object 'f' not found
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> 
+> 
+> 
+> 
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2,4)
+Error in getPeriodReturnSignals(d, "daily", 2, 4) : unused argument (4)
+> rsi <- 
++ start <- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in cbind(ret, pred) : object 'ret' not found
+> plot(f)
+Error in plot(f) : object 'f' not found
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- as.data.frame(getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE))
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+Error in try.xts(x) : 
+  Error in as.xts.double(x, ..., .RECLASS = TRUE) :   order.by must be either 'names()' or otherwise specified
+> rsi <- 
++ start <- 1
+> end <- nrow(ret)
+Error in nrow(ret) : object 'ret' not found
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+Error in nrow(ret) : object 'ret' not found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in cbind(ret, pred) : object 'ret' not found
+> plot(f)
+Error in plot(f) : object 'f' not found
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20080303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 42
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+> f <- forecast(fit,h=20)
+> plot(f)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+
+Error in auto.arima(x) : No suitable ARIMA model found
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+Error in data.frame(..., check.names = FALSE) : 
+  arguments imply differing number of rows: 42, 41
+> plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f <- forecast(fit,h=200)
+> plot(f)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> ret2 <- as.data.frame(cbind(ret$ticker.return.signals,ret$Close,pred))
+> 
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(ret,pred))
+> drop(ret1[,4])
+  [1]  97.75811  94.02682  93.23750  89.91880  89.73942  87.68541  87.35354
+  [8]  88.97701  94.18827  91.51537  89.82014  91.48846  95.72204  88.39400
+ [15]  89.36270  95.41708  96.68177  93.67701  94.62777  94.94170  93.47071
+ [22]  96.11670  97.47109  96.02700  94.58440  92.63959  92.00932  92.78365
+ [29]  94.68344  96.45718  97.18648  94.78248  96.28611  94.92654  97.33054
+ [36]  96.46618  96.72729  98.60907 102.49869 104.08335 102.67877 102.51670
+ [43] 102.10253 104.81266 103.59715 100.70695 101.85042 104.26343 104.83967
+ [50] 104.16439 104.50653 101.74238 104.98373 106.50536 105.42491 106.75747
+ [57] 107.23467 105.87510 104.46151 104.31745 102.77781 103.72320 105.19982
+ [64] 102.95788 104.48852 104.77664 104.19140 104.89369 105.28085 105.62299
+ [71] 104.62358 105.43392 106.37931 110.19690 111.57447 111.30436 111.52945
+ [78] 111.36739 111.08827 112.09669 110.39498 109.88177 111.05226 108.99940
+ [85] 111.01624 110.10686 109.39557 110.99993 112.28369 112.43737 111.94014
+ [92] 113.11542 114.38109 115.11338 116.13496 115.42980 113.95619 113.05213
+ [99] 111.69605 112.41929 112.11191 115.26707 116.40618 116.82204 116.16208
+[106] 115.23995 115.60157 115.18570 115.51116 113.35047 112.89844 113.82058
+[113] 111.96727 112.48258 113.42279 114.90545 112.60010 111.80454 112.83516
+[120] 111.19882 111.27114 111.80454 111.58756 109.40879 108.51377 106.22651
+[127] 107.04920 108.44145 108.14311 108.98388 112.29273 109.08333 110.11395
+[134] 111.65989 109.39071 111.02705 114.26357 113.73921 117.37352 115.26707
+[141] 117.32831 116.67739 116.62315 115.43884 114.39917 115.82758 115.80950
+[148] 116.18920 114.60711 115.89991 116.57823 116.44209 116.62361 116.56008
+[155] 114.36374 113.44709 113.45617 115.32577 114.79938 112.20371 112.08573
+[162] 110.34318 111.90421 112.97515 111.25075 111.10554 112.59397 112.27632
+[169] 111.51395 107.40263 107.08498 103.59988 107.09405 106.89439 105.64193
+[176] 105.82345 107.69305 104.69805 103.21870 104.18073 102.47449 108.53710
+[183] 107.50246 105.46949 106.12295 106.86716 106.37707 106.58581 105.12461
+[190] 104.83419  98.45392  95.44077  91.85584  92.11904  83.05235  86.48299
+[197]  79.33128  82.08124  87.50855  84.19589  81.11921  83.27016  83.68765
+[204]  83.69673  78.95917  76.31813  71.94361  72.85118  73.87675  79.63078
+[211]  82.59856  82.49872  84.07791  86.00197  84.34110  80.02119  78.28715
+[218]  80.30411  75.97814  73.67827  72.66522  75.41230  72.46444  72.21803
+[225]  72.94815  68.44878  66.38619  69.12414  74.26236  72.57396  73.92468
+[232]  73.87905  71.00420  71.75257  73.03941  70.07330  75.35754  76.49836
+[239]  76.61700  74.38101  71.80733  75.30278  75.85037  77.97685  78.27802
+[246]  77.77607  75.99640  75.15676  73.51399  73.86080  74.58179  74.68218
+[253]  76.20631  76.56224  78.87125  79.50098  80.15808  80.13983  79.44622
+[260]  77.18284  78.03161  76.84516  76.30670  77.21935  77.35625  78.75260
+[267]  81.98338  80.67829  81.92863  83.75393  84.60269  85.40582  84.17375
+[274]  82.68612  83.11507  85.55185  84.08248  84.88859  88.02684  87.70567
+[281]  85.77868  86.63206  86.98075  84.17285  83.65899  83.55805  80.79603
+[288]  81.94305  77.65778  78.91492  79.69489  80.86026  83.65899  82.73220
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
+> # TODO: Add comment
+> # 
+> # Author: ajinkyaingale
+> ###############################################################################
+> library(randomForest)
+> library(TTR)
+> library(forecast)
+> library(quantmod)
+> 
+> source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnAbsolute.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TickerDailyReturnsNew.R")
+> #source("/Users/ajinkyaingale/Software Engineering/MastersProjectdocuments/Code/system/analysis/technical/cran/trunk/srs-cran/src/technicalindicators/TechnicalIndicators.R")
+> 
+> gas<-gas
+> 
+> 
+> 
+> d <- getYahooData("IBM", 20080101, 20090303 ,freq="daily", type="price", adjust=TRUE, quiet=FALSE)
+> winsize <- 30
+> 
+> ret <- getPeriodReturnSignals(d,"daily",2)
+[1] 2
+[1] " calculating daily returns "
+[1] " calculated percent daily returns "
+[1] " ticker.return.signals"
+NULL
+[1] " calculating daily return signals "
+[1] " ticker "
+[1] 294
+[1] " ticker.return.signals "
+NULL
+[1] " ticker.return.factors "
+NULL
+> x <- as.ts(ret$daily.returns)
+> fit <- auto.arima(x)
+Warning message:
+In auto.arima(x) :
+  Unable to fit final model using maximum likelihood. AIC value approximated
+> f1 <- forecast(fit,h=200)
+> plot(f1)
+> 
+> 
+> start <- 1
+> end <- nrow(ret)
+> #pred <- nrow(ret)
+> rm(pred)
+> pred <-NULL
+> 
+> for(i in 1:nrow(ret))
++ {
++ 	index <- start + winsize
++ 	window <- ret[start:index,]
++ 	x <- as.ts(window$daily.returns)
++ 	fit <- auto.arima(x)
++ 	f <- forecast(fit,h=1)
++ 	
++ 	predictedrange <- cbind(f$lower,f$upper,f$mean)
++ 	pred<- rbind(pred,predictedrange)
++ 	
++ 	start <- start + 1
++ 	index <- index + 1
++ }
+> 
+> ret1 <- as.data.frame(cbind(pred,ret))
+> #plot(f)
+> 
+> 
+> 
+> #fit1 <- bats(x)
+> #f1<-forecast(fit1)
+> #plot(f1)
+> 
+> #fit2 <- nnetar(x)
+> #f2<-forecast(fit2,h=200)
+> #plot(f2)
