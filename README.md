@@ -1,8 +1,9 @@
 ```
 ### Prerequisites
-
+```
 Install Eclipse
 Install StatET plugin for Eclipse
+```
 ```
 
 ```
