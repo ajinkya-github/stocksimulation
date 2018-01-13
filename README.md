@@ -20,5 +20,6 @@ The core module runs in a R environment and the Rest web service module is deplo
 4 – ParallelizationThe training of models is a very expensive process and takes time to finish.Parallelization should be used and explored for dealing with this. R offers packages forparallelization using multicore, hadoop technologies
 
 5 - Optimization
-It is necessary to research into portfolio optimization using markowitz technique, implement montecarlo simulations and backtesting strategies with market indexes like S&P500 to measure portfolio performance. 
+It is necessary to research into portfolio optimization using markowitz technique, 
+implement montecarlo simulations and backtesting strategies with market indexes like S&P500 to measure portfolio performance. 
 ```
