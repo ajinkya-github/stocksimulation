@@ -21,3 +21,16 @@ The core module runs in a R environment and the Rest web service module is deplo
 
 5 - Optimization
 It is necessary to research into portfolio optimization using markowitz technique, implement montecarlo simulations and backtesting strategies with market indexes like S&P500 to measure portfolio performance. 
+
+### Sample Decision Tree
+
+![alt text](https://github.com/ajinkya-github/stocksimulation/blob/master/images/sampledecisiontree.png)
+
+### Sample Arima Time Series
+
+![alt text](https://github.com/ajinkya-github/stocksimulation/blob/master/images/samplearimaseries.png)
+
+### Confusion matrix
+
+![alt text](https://github.com/ajinkya-github/stocksimulation/blob/master/images/sampleconfusionmatrix.png)
+
